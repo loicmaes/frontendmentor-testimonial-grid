@@ -1,0 +1,123 @@
+@use "colors";
+
+body {
+  display: grid;
+  padding: 1.5em 5em;
+  place-content: center;
+  background-color: colors.$light-grayish-blue;
+
+  @media screen and (max-width: 800px) {
+    padding: 2em 1em;
+  }
+}
+
+.grid {
+  gap: 2em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__box {
+    gap: 1.5em;
+    display: flex;
+    padding: 1.5em 2em;
+    border-radius: 1em;
+    position: relative;
+    flex-direction: column;
+    background-color: colors.$white;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, .05);
+
+    &[data-col-span="2"] {
+      grid-column: span 2;
+    }
+
+    &:last-child {
+      grid-column: 4;
+      grid-row: 1 / span 2;
+    }
+
+    &[data-style="primary"] {
+      z-index: 0;
+      color: colors.$white;
+      background-color: colors.$mod-violet;
+
+      &::before {
+        top: 0;
+        right: 7em;
+        width: 10em;
+        z-index: -1;
+        content: '';
+        position: absolute;
+        aspect-ratio: 1 / 1;
+        background-size: cover;
+        background-image: url('../imgs/bg-pattern-quotation.svg');
+
+        @media screen and (max-width: 800px) {
+          right: 2em;
+          width: 7em;
+        }
+      }
+
+      > header > img {
+        border-color: hsl(0, 0%, 100%, .3);
+      }
+    }
+    &[data-style="light-grey"] {
+      color: colors.$white;
+      background-color: colors.$d-grayish-blue;
+
+      > header > img {
+        border-color: colors.$d-grayish-blue;
+      }
+    }
+    &[data-style="grey"] {
+      color: colors.$white;
+      background-color: colors.$d-blackish-blue;
+
+      > header > img {
+        border-color: colors.$mod-violet;
+      }
+    }
+
+    &__author {
+      gap: 1em;
+      display: flex;
+      align-items: center;
+
+      &--avatar {
+        height: 3em;
+        display: block;
+        border-radius: 50%;
+        border: 2px solid colors.$white;
+      }
+
+      &__credentials {
+        display: flex;
+        flex-direction: column;
+
+        &--role {
+          opacity: .5;
+        }
+      }
+    }
+
+    &__title {
+      font-weight: 600;
+      font-size: 1.75em;
+    }
+
+    &__content {
+      opacity: .5;
+      line-height: 150%;
+    }
+
+    @media screen and (max-width: 800px) {
+      grid-row: inherit !important;
+      grid-column: inherit !important;
+    }
+  }
+}

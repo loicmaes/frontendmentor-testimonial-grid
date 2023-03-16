@@ -1,0 +1,113 @@
+body {
+  display: grid;
+  padding: 1.5em 5em;
+  place-content: center;
+  background-color: hsl(210deg, 46%, 95%);
+}
+@media screen and (max-width: 800px) {
+  body {
+    padding: 2em 1em;
+  }
+}
+
+.grid {
+  gap: 2em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media screen and (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+.grid__box {
+  gap: 1.5em;
+  display: flex;
+  padding: 1.5em 2em;
+  border-radius: 1em;
+  position: relative;
+  flex-direction: column;
+  background-color: hsl(0deg, 0%, 100%);
+  box-shadow: 0 1em 2em rgba(0, 0, 0, 0.05);
+}
+.grid__box[data-col-span="2"] {
+  grid-column: span 2;
+}
+.grid__box:last-child {
+  grid-column: 4;
+  grid-row: 1/span 2;
+}
+.grid__box[data-style=primary] {
+  z-index: 0;
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(263deg, 55%, 52%);
+}
+.grid__box[data-style=primary]::before {
+  top: 0;
+  right: 7em;
+  width: 10em;
+  z-index: -1;
+  content: "";
+  position: absolute;
+  aspect-ratio: 1/1;
+  background-size: cover;
+  background-image: url("../imgs/bg-pattern-quotation.svg");
+}
+@media screen and (max-width: 800px) {
+  .grid__box[data-style=primary]::before {
+    right: 2em;
+    width: 7em;
+  }
+}
+.grid__box[data-style=primary] > header > img {
+  border-color: hsla(0deg, 0%, 100%, 0.3);
+}
+.grid__box[data-style=light-grey] {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(217deg, 19%, 35%);
+}
+.grid__box[data-style=light-grey] > header > img {
+  border-color: hsl(217deg, 19%, 35%);
+}
+.grid__box[data-style=grey] {
+  color: hsl(0deg, 0%, 100%);
+  background-color: hsl(219deg, 29%, 14%);
+}
+.grid__box[data-style=grey] > header > img {
+  border-color: hsl(263deg, 55%, 52%);
+}
+.grid__box__author {
+  gap: 1em;
+  display: flex;
+  align-items: center;
+}
+.grid__box__author--avatar {
+  height: 3em;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid hsl(0deg, 0%, 100%);
+}
+.grid__box__author__credentials {
+  display: flex;
+  flex-direction: column;
+}
+.grid__box__author__credentials--role {
+  opacity: 0.5;
+}
+.grid__box__title {
+  font-weight: 600;
+  font-size: 1.75em;
+}
+.grid__box__content {
+  opacity: 0.5;
+  line-height: 150%;
+}
+@media screen and (max-width: 800px) {
+  .grid__box {
+    grid-row: inherit !important;
+    grid-column: inherit !important;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
